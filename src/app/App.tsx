@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import './styles/index.scss';
 import {classNames} from "shared/lib/classNames/classNames";
 import {useTheme} from "app/providers/ThemeProvider";
@@ -10,7 +10,11 @@ import { LangSwitcher } from 'shared/ui/LangSwitcher';
 
 const App = () => {
    const { theme } = useTheme();
-    
+
+   
+    // useEffect(() =>{
+    //     throw new Error
+    // }, [])
    
 
     return (

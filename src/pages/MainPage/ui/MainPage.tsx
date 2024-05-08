@@ -1,8 +1,8 @@
 import React from 'react';
-import {useTranslation} from "react-i18next";
-import 'shared/config/i18n/i18n';
+import { useTranslation } from 'react-i18next';
+
 const MainPage = () => {
-    const {t} = useTranslation();
+    const { t } = useTranslation();
 
     return (
         <div>
