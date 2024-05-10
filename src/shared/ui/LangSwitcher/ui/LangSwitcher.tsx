@@ -19,7 +19,7 @@ import 'shared/config/i18n/i18n';
 
 import { classNames } from 'shared/lib/classNames/classNames'
 import cls from './LangSwitcher.module.scss'
-import { Button, ThemeButton } from 'shared/ui/Button/Button'
+import { Button, ButtonTheme } from 'shared/ui/Button/Button'
 
 //
 
@@ -40,7 +40,7 @@ export const LangSwitcher = ({className}: LangSwitcherProps) => {
         <Button 
             onClick={toggle}
             className={classNames(cls.langSwitcher, {}, [className])}
-            theme={ThemeButton.CLEAR}
+            theme={ButtonTheme.CLEAR}
         >
             {t('RU')}
         </Button>
