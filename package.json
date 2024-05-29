@@ -11,7 +11,9 @@
     "lint:ts:fix": "eslint \"**/*.{ts,tsx}\" --fix",
     "lint:scss": "npx stylelint \"**/*.scss\"",
     "lint:scss:fix": "npx stylelint \"**/*.scss\" --fix",
-    "unit": "jest --config ./config/jest/jest.config.ts"
+    "unit": "jest --config ./config/jest/jest.config.ts",
+    "jserver": "json-server --watch ./Data/db.json --port 8000",
+    "start:dev:server": "node ./Data/index.js"
   },
   "keywords": [],
   "author": "",
@@ -45,6 +47,7 @@
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^27.5.1",
+    "json-server": "^0.17.0",
     "mini-css-extract-plugin": "^2.5.3",
     "sass": "^1.49.9",
     "sass-loader": "^12.6.0",
@@ -59,12 +62,14 @@
     "webpack-dev-server": "^4.7.4"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.8.0",
     "i18next": "^21.6.11",
     "i18next-browser-languagedetector": "^6.1.3",
     "i18next-http-backend": "^1.3.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-i18next": "^11.15.5",
+    "react-redux": "^7.2.6",
     "react-router-dom": "^6.2.1"
   }
 }
