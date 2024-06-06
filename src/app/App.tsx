@@ -6,11 +6,19 @@ import {AppRouter} from "app/providers/router";
 import {Navbar} from "widgets/Navbar";
 import { Sidebar } from 'widgets/Sidebar';
 import { LangSwitcher } from 'shared/ui/LangSwitcher';
+import { useDispatch } from 'react-redux';
+import { userActions } from './entities/User';
 
 const App = () => {
-   const { theme } = useTheme();
+    const { theme } = useTheme();
+    const dispatch = useDispatch();
 
-   
+
+    useEffect(() => {
+        dispatch(userActions.initAuth())
+        
+    }, [])
+    
     // useEffect(() =>{
     //     throw new Error
     // }, [])
