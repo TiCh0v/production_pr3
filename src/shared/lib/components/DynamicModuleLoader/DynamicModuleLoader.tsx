@@ -1,5 +1,3 @@
-import { classNames } from 'shared/lib/classNames/classNames'
-import cls from './DynamicModuleLoader.module.scss'
 import { FC, ReactNode, useEffect } from 'react'
 import { useStore, useDispatch } from 'react-redux'
 import { Reducer } from '@reduxjs/toolkit'
@@ -37,7 +35,7 @@ export const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = (props) => {
             if(unmountRemove){
                 Object.entries(reducers).forEach(([name, reducer]: ReducersListEntry) => {
                     store.reducerManager.add(name, reducer);
-                    dispatch({type: `@INIT ${name} reducer`})
+                    dispatch({type: `@DELETED ${name} reducer`})
         
                 })
             }

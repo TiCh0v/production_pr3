@@ -14,22 +14,24 @@ import { getLoginUsername } from '../../model/selectors/getLoginUsername/getLogi
 import { getLoginPassword } from '../../model/selectors/getLoginPassword/getLoginPassword';
 import { getLoginIsLoading } from '../../model/selectors/getLoginIsLoading/getLoginIsLoading';
 import { getLoginError } from '../../model/selectors/getLoginError/getLoginError';
-import { DynamicModuleLoader, ReducersList } from 'shared/components/DynamicModuleLoader/DynamicModuleLoader';
+import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 //
 
 export interface LoginFormProps {
-    className?: string,
+    className?: string;
+    onSuccess: () => void;
 }
 
 const initialReducers : ReducersList = {
     loginForm: loginReducer
 }
 
-const LoginForm = memo(({className}: LoginFormProps) => {
+const LoginForm = memo(({className, onSuccess}: LoginFormProps) => {
 
     const { t } = useTranslation();
 
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     
     // const {username, password, isLoading, error} = useSelector(getLoginState);
 
@@ -39,7 +41,6 @@ const LoginForm = memo(({className}: LoginFormProps) => {
     const error = useSelector(getLoginError);
 
 
-    
 
     const onChangeUsername = useCallback((value: string) => {
         dispatch(loginActions.setUsername(value))
@@ -49,9 +50,14 @@ const LoginForm = memo(({className}: LoginFormProps) => {
         dispatch(loginActions.setPassword(value))
     }, [dispatch]);
 
-    const onAuth = useCallback(() => {
-        dispatch(loginByUsername({ username, password }));
-    }, [dispatch, password, username]);
+    const onAuth = useCallback( async () => {
+        const result = await dispatch(loginByUsername({ username, password }));
+        console.log(result)
+        if(result.meta.requestStatus === 'fulfilled'){
+            onSuccess()
+        }
+    
+    }, [onSuccess, dispatch, password, username]);
 
     return (
         <DynamicModuleLoader
