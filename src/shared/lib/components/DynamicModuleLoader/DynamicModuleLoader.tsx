@@ -24,6 +24,7 @@ export const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = (props) => {
     const store = useStore() as ReduxStoreWithManager;
 
     useEffect(() => {
+        //@ts-ignore
         Object.entries(reducers).forEach(([name, reducer]: ReducersListEntry) => {
             store.reducerManager.add(name, reducer);
             dispatch({type: `@INIT ${name} reducer`})
@@ -33,6 +34,7 @@ export const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = (props) => {
 
         return () => {
             if(unmountRemove){
+                //@ts-ignore
                 Object.entries(reducers).forEach(([name, reducer]: ReducersListEntry) => {
                     store.reducerManager.add(name, reducer);
                     dispatch({type: `@DELETED ${name} reducer`})
