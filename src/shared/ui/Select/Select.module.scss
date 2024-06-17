@@ -1,0 +1,40 @@
+.SelectWrapper {
+    display: flex;
+    align-items: center;
+    position: relative; // Чтобы стрелка позиционировалась относительно этого блока
+}
+
+.select {
+    background: none;
+    outline: none;
+    padding-right: 30px; // Увеличиваем правый padding для стрелки
+    padding-left: 5px;
+    appearance: none;
+    -webkit-appearance: none; // Safari
+    background-color: #fff;
+    border: 1px solid #caced1;
+    border-radius: 0.25rem;
+    color: #000;
+    cursor: pointer;
+   
+}
+
+.select::after {
+    content: '';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 5px solid transparent;
+    border-top-color: #000; // Цвет стрелки
+    pointer-events: none;
+    z-index: 1; // Чтобы стрелка была поверх select
+}
+
+.label {
+    margin-right: 5px;
+}
+
+.option {
+    margin-left: 40px;
+}

@@ -1,4 +1,4 @@
-import { classNames } from 'shared/lib/classNames/classNames';
+import { Mods, classNames } from 'shared/lib/classNames/classNames';
 import cls from './ProfileCard.module.scss';
 
 import { useSelector } from 'react-redux';
@@ -8,6 +8,8 @@ import { getProfileIsLoading } from '../model/selectors/getProfileIsLoading/getP
 
 import { Input } from 'shared/ui/Input/Input';
 import { Profile, ProfileSchema } from '../model/types/ProfileSchema';
+import { Avatar, AvatarSize } from 'shared/ui/Avatar/Avatar';
+import { Currency, CurrencySelect } from 'app/entities/Currency';
 
 interface ProfileCardProps {
   className?: string;
@@ -15,11 +17,14 @@ interface ProfileCardProps {
   error?: string;
   isLoading?: boolean
   readonly?: boolean
-  changeLastName: (value?: string) => void;
-  changeFirstName: (value?: string) => void;
-  changeAge: (value?: string) => void;
-  changeCity: (value?: string) => void;
-
+  changeLastName?: (value?: string) => void;
+  changeFirstName?: (value?: string) => void;
+  changeAge?: (value?: string) => void;
+  changeCity?: (value?: string) => void;
+  changeUsername?: (value?: string) => void;
+  changeAvatar?: (value?: string) => void;
+  changeCurrency?: (currency?: Currency) => void;
+  
 }
 
 export const ProfileCard = (props: ProfileCardProps) => {
@@ -32,12 +37,19 @@ export const ProfileCard = (props: ProfileCardProps) => {
     data,
     error,
     isLoading,
-    readonly,
+    readonly = true,
     changeFirstName,
     changeLastName,
     changeAge,
     changeCity,
+    changeAvatar,
+    changeUsername,
+    changeCurrency
   } = props
+
+  const mods: Mods = {
+    [cls.editing]: !readonly
+  }
 
   if(isLoading) {
     return(
@@ -56,7 +68,16 @@ export const ProfileCard = (props: ProfileCardProps) => {
   }
 
   return (
-    <div className={classNames(cls.ProfileCard, {}, [className])}>
+    <div className={classNames(cls.ProfileCard, mods, [className])}>
+      {data?.avatar && <Avatar size={AvatarSize.L} src={data.avatar} className='gg'/>}
+      
+      <Input 
+        value={data?.username}
+        placeholder='username'
+        className={cls.input}
+        onChange={changeUsername}
+        readonly={readonly}
+      />
       <Input 
         value={data?.first}
         placeholder='name'
@@ -85,7 +106,20 @@ export const ProfileCard = (props: ProfileCardProps) => {
         onChange={changeCity}
         readonly={readonly}
       />
-
+      <Input 
+        value={data?.avatar}
+        placeholder='avatar link'
+        className={cls.input}
+        onChange={changeAvatar}
+        readonly={readonly}
+      />
+      <CurrencySelect
+        className={cls.currencySelect}
+        value={data?.currency}
+        onChange={changeCurrency}
+        readonly={readonly}
+      />
+ 
     </div>
   );
 };

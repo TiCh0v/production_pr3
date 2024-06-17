@@ -14,6 +14,7 @@ import { useSelector } from 'react-redux';
 import { ProfilePageHeader } from './ProfilePageHeader/ProfilePageHeader';
 import { getReadOnly } from 'app/entities/Profile/model/selectors/getReadOnly/getReadOnly';
 import { getProfileForm } from 'app/entities/Profile/model/selectors/getProfileForm/getProfileForm';
+import { Currency } from 'app/entities/Currency';
 
 const reducers: ReducersList = {
     profile: profileReducer,
@@ -53,10 +54,25 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
         dispatch(profileActions.updateProfileData({city: value || ''}))
     }, [dispatch]);
 
+    const changeAvatar = useCallback((value?: string) => {
+        dispatch(profileActions.updateProfileData({avatar: value || ''}))
+    }, [dispatch]);
+
+    const changeUsername = useCallback((value?: string) => {
+        dispatch(profileActions.updateProfileData({username: value || ''}))
+    }, [dispatch]);
+
+    const changeCurrency = useCallback((value?: Currency) => {
+        dispatch(profileActions.updateProfileData({currency: value}))
+    }, [dispatch]);
+
+
+
     return (
         <DynamicModuleLoader reducers={reducers} unmountRemove={true}>
             <div className={classNames('', {}, [className])}>
                 <ProfilePageHeader />
+                
                 <ProfileCard 
                     data={formData} 
                     error={error} 
@@ -66,6 +82,9 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
                     changeLastName={changeLastName}
                     changeAge={changeAge}
                     changeCity={changeCity}
+                    changeAvatar={changeAvatar}
+                    changeUsername={changeUsername}
+                    changeCurrency={changeCurrency}
                 />
 
             </div>
