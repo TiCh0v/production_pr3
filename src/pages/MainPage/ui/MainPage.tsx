@@ -19,6 +19,7 @@ const MainPage = () => {
     return (
         <div>
             {t('Главная страница')}
+            <div style={{color: 'black'}}>wpijfiwefj</div>
             <Counter />
             <Input onChange={onChange} value={value}/>
         </div>
