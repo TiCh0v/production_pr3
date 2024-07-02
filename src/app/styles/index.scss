@@ -4,13 +4,8 @@
 @import "themes/dark";
 @import "themes/green";
 
-body{
-    font: var(--font-m);
-    color: var(--primary-color);
-}
-
 .app,
-.app_modal{
+.app_modal {
     font: var(--font-m);
     color: var(--primary-color);
 }
@@ -19,11 +14,15 @@ body{
     background: var(--bg-color);
     min-height: 100vh;
 }
+
 .content-page {
     display: flex;
 }
 
 .page-wrapper {
     flex-grow: 1;
-    padding: 20px;
+    padding: 20px 20px 20px 45px;
+    height: calc(100vh - var(--navbar-height));
+    overflow-y: auto;
+    width: 100%;
 }

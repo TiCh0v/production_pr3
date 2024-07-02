@@ -9,6 +9,7 @@ import { ProfileSchema } from 'app/entities/Profile';
 import { AxiosInstance } from 'axios';
 import { To } from 'history';
 import { NavigateOptions } from 'react-router';
+import { ArticleDetailsSchema } from 'app/entities/Article';
 
 
 export interface StateSchema {
@@ -18,6 +19,7 @@ export interface StateSchema {
     // Асинхронные редюсеры
     loginForm?: LoginSchema;
     profile?: ProfileSchema;
+    article?: ArticleDetailsSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;
