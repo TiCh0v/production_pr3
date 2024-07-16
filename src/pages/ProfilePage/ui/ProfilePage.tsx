@@ -17,6 +17,8 @@ import { getProfileForm } from 'app/entities/Profile/model/selectors/getProfileF
 import { Currency } from 'app/entities/Currency';
 import { getProfileValidateErrors } from 'app/entities/Profile/model/selectors/getProfileValidateError/getProfileValidateError';
 
+import { useParams } from 'react-router-dom';
+
 const reducers: ReducersList = {
     profile: profileReducer,
 };
@@ -35,6 +37,8 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
     const readonly = useSelector(getReadOnly);
     const validateError = useSelector(getProfileValidateErrors);
 
+    const { id } = useParams<{id: string}>();
+
     const validateErrorTranslates = {
         [ValidateProfileErrors.SERVER_ERROR]: 'server error during saving',
         [ValidateProfileErrors.NO_DATA]: 'no data',
@@ -44,7 +48,9 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
     };
 
     useEffect(() => {
-        dispatch(fetchProfileData())
+        if (id) {
+            dispatch(fetchProfileData(id))
+        }
     }, [dispatch])
 
     const changeFirstName = useCallback((value?: string) => {

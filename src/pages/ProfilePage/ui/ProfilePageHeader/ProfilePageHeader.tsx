@@ -7,46 +7,50 @@ import { useCallback } from 'react'
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { profileActions } from 'app/entities/Profile'
 import { updateProfileData } from 'app/entities/Profile/model/services/updateProfileData/updateProfileData'
+import { getUserAuthData } from 'app/entities/User'
+import { getProfileData } from 'app/entities/Profile/model/selectors/getProfileData/getProfileData'
 //
 
 interface ProfilePageHeaderProps {
-    className?: string,
+  className?: string,
 }
 
+export const ProfilePageHeader = ({ className }: ProfilePageHeaderProps) => {
+const readonly = useSelector(getReadOnly);
+const dispatch = useAppDispatch();
 
+const onEdit = useCallback(() => {
+  dispatch(profileActions.setReadonly(false));
+}, [dispatch]);
 
-export const ProfilePageHeader = ({className}: ProfilePageHeaderProps) => {
+const onCancel = useCallback(() => {
+  dispatch(profileActions.cancelEdit());
+}, [dispatch]);
 
-  const readonly = useSelector(getReadOnly);
-  const dispatch = useAppDispatch();
+const onSave = useCallback(() => {
+  dispatch(updateProfileData());
+  dispatch(profileActions.setReadonly(true));
+}, [dispatch]);
 
-  const onEdit = useCallback(() => {
-    dispatch(profileActions.setReadonly(false))
-  }, [dispatch])
+const authData = useSelector(getUserAuthData);
+const thisProfileData = useSelector(getProfileData);
 
-  const onCancel = useCallback(() => {
-    dispatch(profileActions.cancelEdit())
-  }, [dispatch])
+const editable = authData?.id === thisProfileData?.id;
 
-  const onSave = useCallback(() => {
-    dispatch(updateProfileData())
-    dispatch(profileActions.setReadonly(true))
-  }, [dispatch])
-
-
-  return (
-    <div className={classNames(cls.ProfilePageHeader, {}, [className])}>
-        <p>Profile</p>
-        {readonly ? 
-        (<Button 
+return (
+  <div className={classNames(cls.ProfilePageHeader, {}, [className])}>
+    <p>Profile</p>
+    {editable && (
+      <div>
+        {readonly ? (
+          <Button 
             theme={ButtonTheme.OUTLINE}
             className={cls.editBtn}
             onClick={onEdit}
-        >
+          >
             Edit
-        </Button>)
-        : 
-        (
+          </Button>
+        ) : (
           <>      
             <Button 
               theme={ButtonTheme.OUTLINE_RED}
@@ -59,11 +63,13 @@ export const ProfilePageHeader = ({className}: ProfilePageHeaderProps) => {
               theme={ButtonTheme.OUTLINE}
               className={cls.editBtn}
               onClick={onSave}
-              >
+            >
               Save
             </Button>
           </>
         )}
-    </div>
-  )
-}
+      </div>
+    )}
+  </div>
+);
+};

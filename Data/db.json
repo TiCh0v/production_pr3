@@ -102,6 +102,48 @@
       "text": "some comment 3",
       "articleId": "1",
       "userId": "1"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "wef",
+      "id": "tSK6hkz"
+    },
+    {
+      "articleId": "1",
+      "userId": "2",
+      "text": "wefwef",
+      "id": "2_DvLUr"
+    },
+    {
+      "articleId": "1",
+      "userId": "2",
+      "text": "123",
+      "id": "gF53GiS"
+    },
+    {
+      "articleId": "1",
+      "userId": "2",
+      "text": "wd",
+      "id": "6zAqwJR"
+    },
+    {
+      "articleId": "1",
+      "userId": "2",
+      "text": "2",
+      "id": "uR8w114"
+    },
+    {
+      "articleId": "1",
+      "userId": "2",
+      "text": "2",
+      "id": "jJ5d9BX"
+    },
+    {
+      "articleId": "1",
+      "userId": "2",
+      "text": "try not crye",
+      "id": "k59gUnB"
     }
   ],
   "users": [
@@ -117,17 +159,31 @@
       "username": "user",
       "password": "123",
       "role": "USER",
-      "avatar": "https://yt3.ggpht.com/ytc/AAUvwngFzM_Rf6MNwOnFcuphoj93k7VFjlIrj-kSMxbh=s900-c-k-c0x00ffffff-no-rj"
+      "avatar": "https://forum-ru-cdn.warthunder.com/original/3X/a/f/af62d76a2d92797df0711e6a94d319490936f3a1.jpeg"
     }
   ],
-  "profile": {
-    "first": "jgh",
-    "lastname": "asf",
-    "age": 465,
-    "currency": "RUB",
-    "country": "Belarus",
-    "city": "Moscow",
-    "username": "admin213",
-    "avatar": "https://yt3.ggpht.com/ytc/AAUvwngFzM_Rf6MNwOnFcuphoj93k7VFjlIrj-kSMxbh=s900-c-k-c0x00ffffff-no-rj"
-  }
+  "profile": [
+    {
+      "id": "1",
+      "first": "jgh",
+      "lastname": "asf",
+      "age": 465,
+      "currency": "RUB",
+      "country": "Belarus",
+      "city": "Moscow",
+      "username": "admin213",
+      "avatar": "https://cs13.pikabu.ru/post_img/2023/10/28/2/1698456437194820220.jpg"
+    },
+    {
+      "id": "2",
+      "first": "user",
+      "lastname": "lastname",
+      "age": 16,
+      "currency": "RUB",
+      "country": "Russia",
+      "city": "Moscow",
+      "username": "random user",
+      "avatar": "https://forum-ru-cdn.warthunder.com/original/3X/a/f/af62d76a2d92797df0711e6a94d319490936f3a1.jpeg"
+    }
+  ]
 }

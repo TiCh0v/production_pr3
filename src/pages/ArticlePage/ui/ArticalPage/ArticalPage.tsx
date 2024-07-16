@@ -1,6 +1,6 @@
 import { classNames } from 'shared/lib/classNames/classNames'
 import cls from './ArticalPage.module.scss'
-import { memo, useEffect } from 'react'
+import { memo, useCallback, useEffect } from 'react'
 import { Article } from 'app/entities/Article'
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
 import { articleReducer } from 'app/entities/Article/model/slice/articleSlice'
@@ -11,6 +11,8 @@ import { articleCommentReducer, getArticleComments } from 'pages/ArticlePage/mod
 import { useDispatch, useSelector } from 'react-redux'
 import { getArticleCommentsError, getArticleCommentsIsLoading } from 'pages/ArticlePage/model/selectors/getArticleCommentsSelectors'
 import { fetchComments } from 'pages/ArticlePage/model/services/fetchComments'
+import { AddCommentForm } from 'app/features/AddComment'
+
 
 interface ArticalPageProps {
     className?: string,
@@ -36,6 +38,7 @@ const ArticalPage = ({className}: ArticalPageProps) => {
   const commentsIsLoading = useSelector(getArticleCommentsIsLoading);
   const commentsError = useSelector(getArticleCommentsError);
 
+
   useEffect(() => {
     dispatch(fetchComments(id))
   }, [])
@@ -57,6 +60,7 @@ const ArticalPage = ({className}: ArticalPageProps) => {
       <div className={classNames(cls.ArticalPage, {}, [className])}>
         <Article id={id}/>
         <Text title='Comments'/>
+        <AddCommentForm />
         <CommentList 
           comments={comments} 
           error={commentsError}
